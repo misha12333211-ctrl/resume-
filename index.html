@@ -62,7 +62,7 @@
             letter-spacing: -0.03em;
             line-height: 1.1;
             color: var(--ui-text-main);
-            padding-top: 15px; /* Отступ сверху над именем на больших экранах */
+            padding-top: 15px;
         }
 
         .status-container {
@@ -78,7 +78,6 @@
             font-weight: 500;
         }
 
-        /* Настоящий живой статус без ИИ-эффектов */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -210,7 +209,7 @@
             font-size: 0.9rem;
         }
 
-        /* Навыки в виде строгого печатного перечисления */
+        /* Навыки */
         .skills-print {
             display: flex;
             flex-wrap: wrap;
@@ -233,7 +232,7 @@
 
         .action-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
         }
 
@@ -273,18 +272,26 @@
             color: var(--ui-bg);
         }
 
-        /* Планшетная адаптация (экраны до 992px) */
+        .btn-pdf {
+            background: #f3f4f6;
+            color: var(--ui-text-main);
+            border: 1px solid var(--ui-border);
+        }
+        .btn-pdf:hover {
+            background: var(--ui-border);
+        }
+
+        /* Адаптивность */
         @media (max-width: 992px) {
             body { padding: 40px 15px; }
             .resume-sheet { padding: 50px 45px; }
         }
 
-        /* Мобильная адаптация (экраны до 768px, портретный и альбомный режимы) */
         @media (max-width: 768px) {
             body { padding: 0; background-color: var(--ui-bg); }
             .resume-sheet { padding: 30px 20px; box-shadow: none; }
             header { grid-template-columns: 1fr; gap: 15px; border-bottom-width: 1px; margin-bottom: 30px; padding-bottom: 25px; }
-            .profile-title h1 { font-size: 2.2rem; padding-top: 10px; /* Отступ сверху на мобильных */ }
+            .profile-title h1 { font-size: 2.2rem; padding-top: 10px; }
             .contacts-list { text-align: left; }
             section { grid-template-columns: 1fr; gap: 10px; margin-bottom: 35px; }
             section:last-of-type { margin-bottom: 45px; }
@@ -293,13 +300,84 @@
             .log-title { font-size: 1.1rem; }
             .action-container { padding-top: 25px; }
             .action-btn { padding: 14px 10px; font-size: 0.9rem; }
-            .action-grid { gap: 10px; }
+            .action-grid { grid-template-columns: 1fr; gap: 10px; }
         }
 
-        /* Оптимизация для совсем маленьких экранов (до 375px) */
         @media (max-width: 375px) {
             .profile-title h1 { font-size: 1.8rem; }
             .action-btn { font-size: 0.8rem; padding: 12px 5px; }
+        }
+
+        /* СВЕРХКОМПАКТНЫЕ СТИЛИ ДЛЯ ИДЕАЛЬНОГО РАЗМЕЩЕНИЯ НА СТРАНИЦЕ А4 */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm; /* Уменьшили поля листа до минимума */
+            }
+            body {
+                background: none;
+                color: #000;
+                padding: 0;
+                line-height: 1.35 !important; /* Уплотнили весь текст */
+                font-size: 11.5px !important; /* Уменьшили базовый шрифт */
+            }
+            .resume-sheet {
+                padding: 0 !important;
+                box-shadow: none !important;
+                max-width: 100% !important;
+            }
+            header {
+                margin-bottom: 20px !important;
+                padding-bottom: 15px !important;
+            }
+            .profile-title h1 {
+                font-size: 1.9rem !important; /* Сжали имя */
+                padding-top: 0 !important;
+            }
+            .status-container {
+                margin-top: 5px !important;
+            }
+            section {
+                grid-template-columns: 140px 1fr !important; /* Оптимальная ширина левой колонки */
+                margin-bottom: 14px !important; /* Уменьшили зазоры разделов */
+                gap: 15px !important;
+            }
+            section:last-of-type {
+                margin-bottom: 0 !important;
+            }
+            h2 {
+                font-size: 0.75rem !important;
+                padding-top: 2px !important;
+            }
+            .content-body {
+                gap: 10px !important; /* Сжали расстояния между местами работы */
+            }
+            .log-title {
+                font-size: 1rem !important;
+            }
+            .log-meta {
+                font-size: 0.85rem !important;
+            }
+            .log-desc {
+                margin-top: 2px !important;
+                font-size: 0.85rem !important;
+            }
+            .lang-grid {
+                gap: 10px !important;
+            }
+            .lang-node {
+                font-size: 0.85rem !important;
+            }
+            .skills-print {
+                row-gap: 4px !important; /* Уплотнили навыки */
+                column-gap: 16px !important;
+            }
+            .skill-text {
+                font-size: 0.85rem !important;
+            }
+            .action-container {
+                display: none !important; /* Полностью прячем кнопки */
+            }
         }
     </style>
 </head>
@@ -327,7 +405,7 @@
         <h2>Опыт работы</h2>
         <div class="content-body">
             <div class="log-item">
-                <div class="log-title">Кассир-бухгалтер — Начальник отдела (СПб, с 1998 по 2017 г.)</div>
+                <div class="log-title">Кассир-бухгалтер -- Начальник отдела (СПб, с 1998 по 2017 г.)</div>
                 <div class="log-meta">«Альфа-Банк», «РОСТ Банк», «МосОбл Банк», «Импекс Банк»</div>
                 <div class="log-desc">
                     Успешный многолетний опыт работы в структурах крупнейших банков. Карьерный рост от кассира-бухгалтера до начальника отдела кассовых операций.
@@ -371,11 +449,11 @@
                 </div>
                 <div class="lang-node">
                     <span class="lang-nodestrong">Испанский</span>
-                    <span>B2 — Выше среднего</span>
+                    <span>B2 -- Выше среднего</span>
                 </div>
                 <div class="lang-node">
                     <span class="lang-nodestrong">Английский</span>
-                    <span>A1 — Базовый</span>
+                    <span>A1 -- Базовый</span>
                 </div>
                 <div class="lang-node">
                     <span class="lang-nodestrong">Армянский</span>
@@ -388,14 +466,14 @@
     <section>
         <h2>Ключевые навыки</h2>
         <div class="content-body">
-            <div class="skills-print" id="skills-target">
-                </div>
+            <div class="skills-print" id="skills-target"></div>
         </div>
     </section>
 
     <div class="action-container">
         <div class="action-grid">
             <a href="mailto:aleshkinamaria@mail.ru?subject=Предложение по вакансии для Марии Алёшкиной" class="action-btn btn-primary">Написать на почту</a>
+            <button onclick="window.print();" class="action-btn btn-pdf">Скачать PDF</button>
             <a href="tel:+37433526231" class="action-btn btn-secondary">Позвонить</a>
         </div>
     </div>
