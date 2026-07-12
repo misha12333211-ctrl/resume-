@@ -6,181 +6,252 @@
     <title>Резюме: Мария Алёшкина</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #34495e;
-            --accent: #e74c3c;
-            --bg: #f8f9fa;
-            --text: #333;
-            --light-text: #666;
+            --primary: #1e293b;
+            --secondary: #475569;
+            --accent: #0f766e;
+            --accent-hover: #115e59;
+            --bg: #f1f5f9;
+            --text: #0f172a;
+            --light-text: #64748b;
+            --card-bg: #ffffff;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.6;
-            padding: 40px 20px;
+            line-height: 1.7;
+            padding: 50px 20px;
         }
 
         .resume-container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Шапка */
         header {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 25px;
-            margin-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 35px;
+            margin-bottom: 40px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
         }
 
         .header-main h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary);
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
 
         .age {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--light-text);
-            margin-top: 5px;
+            margin-top: 6px;
+            font-weight: 500;
         }
 
         .status-badge {
             display: inline-block;
-            background: #fff3cd;
-            color: #856404;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            background: #ccfbf1;
+            color: #115e59;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-top: 10px;
-            border: 1px solid #ffeeba;
+            margin-top: 14px;
         }
 
         /* Контакты */
         .contacts {
             text-align: right;
             font-size: 0.95rem;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #f1f5f9;
         }
 
         .contacts p {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .contacts p:last-child {
+            margin-bottom: 0;
         }
 
         .contacts a {
             color: var(--accent);
             text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
         }
 
         .contacts a:hover {
+            color: var(--accent-hover);
             text-decoration: underline;
         }
 
         /* Секции */
         section {
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
         h2 {
-            font-size: 1.3rem;
-            color: var(--primary);
+            font-size: 1.2rem;
+            color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--accent);
-            padding-left: 10px;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Опыт работы */
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        /* Элементы опыта и образования */
         .job {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .job:last-child {
+            margin-bottom: 0;
+        }
+
+        .job::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
         }
 
         .job-title {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
         }
 
         .job-companies {
-            font-style: italic;
+            font-weight: 600;
             color: var(--light-text);
-            margin-bottom: 5px;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
         }
 
-        /* Навыки в виде тегов */
+        .job-description {
+            color: #334155;
+        }
+
+        /* Навыки */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
             margin-top: 10px;
         }
 
         .skill-tag {
-            background: #edf2f7;
-            color: var(--secondary);
-            padding: 6px 14px;
-            border-radius: 20px;
+            background: #f1f5f9;
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 30px;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e2e8f0;
         }
 
         .skill-tag:hover {
             background: var(--primary);
             color: #fff;
+            border-color: var(--primary);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 41, 59, 0.15);
         }
 
-        /* Интерактивная кнопка для связи */
+        /* Кнопка действия */
         .action-btn {
             background: var(--accent);
             color: white;
             border: none;
-            padding: 12px 24px;
-            font-size: 1rem;
-            border-radius: 4px;
+            padding: 16px 32px;
+            font-size: 1.05rem;
+            border-radius: 12px;
             cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
+            font-weight: 700;
+            transition: all 0.2s;
             display: block;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 45px;
             text-align: center;
+            box-shadow: 0 4px 14px rgba(15, 118, 110, 0.2);
         }
 
         .action-btn:hover {
-            background: #c0392b;
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(15, 118, 110, 0.3);
         }
 
-        /* Адаптивность для мобильных */
-        @media (max-width: 600px) {
+        /* Адаптивность */
+        @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                gap: 20px;
+                align-items: flex-start;
+                gap: 25px;
             }
             .contacts {
                 text-align: left;
+                width: 100%;
+            }
+            .contacts p {
+                justify-content: flex-start;
             }
             body {
-                padding: 10px;
+                padding: 15px;
             }
             .resume-container {
-                padding: 20px;
+                padding: 30px 20px;
+            }
+            .header-main h1 {
+                font-size: 2.2rem;
             }
         }
     </style>
@@ -192,7 +263,7 @@
         <div class="header-main">
             <h1>Мария Алёшкина</h1>
             <p class="age">53 года</p>
-            <span class="status-badge">Готова к предложениям / Рассматриваю разные вакансии</span>
+            <span class="status-badge">Рассматриваю различные предложения</span>
         </div>
         <div class="contacts">
             <p>📍 Армения, Ереван</p>
@@ -207,13 +278,13 @@
         <div class="job">
             <p class="job-title">Кассир-бухгалтер / Начальник отдела</p>
             <p class="job-companies">«Альфа-Банк», «РОСТ Банк», «МосОбл Банк», «Импекс Банк»</p>
-            <p>Успешный опыт работы в банковском секторе. Прошла путь от линейного сотрудника (кассир-бухгалтер) до руководителя подразделения. Эксперт </p>
+            <p class="job-description">Успешный опыт работы в банковском секторе. Прошла карьерный путь от линейного сотрудника (кассир-бухгалтер) до руководителя подразделения. Эксперт в сфере кассовых, учетных и валютно-обменных операций.</p>
         </div>
 
         <div class="job">
             <p class="job-title">Диспетчер-логист</p>
             <p class="job-companies">Транспортная компания ООО «ПРОФИ»</p>
-            <p>Координация транспортных потоков, организация работы транспортной компании, поиск новых клиентов и оперативное решение конфликтных ситуаций.</p>
+            <p class="job-description">Координация транспортных потоков, комплексная организация работы транспортной компании, активный поиск новых клиентов и эффективное, оперативное решение конфликтных ситуаций.</p>
         </div>
     </section>
 
@@ -223,10 +294,12 @@
             <p class="job-title">Высшее медицинское (Врач-эпидемиолог)</p>
             <p class="job-companies">СПб ГМА, 1996 г.</p>
         </div>
+        
         <div class="job">
-            <p class="job-title">Специализированные курсы</p>
-            <p class="job-companies">Кассир рублёвых и валютных операций (1998 г.), свидетельство о повышении квалификации (2006 г.)</p>
-            <p class="job-companies">Кондитер (2019 г.)</p>
+            <p class="job-title">Специализированное обучение и курсы</p>
+            <p class="job-companies">Специалист рублёвых и валютных операций (1998 г.)</p>
+            <p class="job-description">Свидетельство о повышении квалификации в банковской сфере (2006 г.)</p>
+            <p class="job-companies" style="margin-top: 10px;">Профессиональный кондитер (2019 г.)</p>
         </div>
     </section>
 
@@ -240,16 +313,22 @@
 </div>
 
 <script>
-    // Массив навыков для динамического вывода через JS
+    // Исправленный и дополненный массив навыков
     const skills = [
-        "Работа в режиме ногозадачности", "Работа с большим объёмом информации", "Решение конфликтов", "Управление командой", 
- "Работа с большим объемом данных", 
-        "Ответственность".
+        "Работа в режиме многозадачности", 
+        "Работа с большим объёмом информации", 
+        "Решение конфликтных ситуаций", 
+        "Управление командой", 
+        "Умение расставлять приоритеты", 
+        "Грамотное планирование задач", 
+        "Ведение деловых переговоров", 
+        "Целеустремленность", 
+        "Высокая ответственность"
     ];
 
     const skillsContainer = document.getElementById('skills-list');
 
-    // Рендерим навыки на страницу
+    // Безопасный рендеринг без синтаксических ошибок
     skills.forEach(skill => {
         const tag = document.createElement('span');
         tag.className = 'skill-tag';
@@ -257,10 +336,9 @@
         skillsContainer.appendChild(tag);
     });
 
-    // Простой интерактив на JS для кнопки
+    // Интерактив для кнопки связи
     document.getElementById('contactBtn').addEventListener('click', function() {
-        // Открывает почтовый клиент сразу с темой письма
-        window.location.href = "mailto:aleshkinamaria@mail.ru?subject=Предложение о работе для Марии";
+        window.location.href = "mailto:aleshkinamaria@mail.ru?subject=Предложение о работе для Марии Алёшкиной";
     });
 </script>
 
