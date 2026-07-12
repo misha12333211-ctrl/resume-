@@ -139,6 +139,12 @@
             background: #e2e8f0;
         }
 
+        /* О себе */
+        .about-text {
+            color: #334155;
+            font-size: 1.05rem;
+        }
+
         /* Элементы опыта и образования */
         .job {
             margin-bottom: 30px;
@@ -180,11 +186,21 @@
         }
 
         /* Навыки */
+        .skills-group {
+            margin-bottom: 20px;
+        }
+        
+        .skills-group h3 {
+            font-size: 1rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
         .skills-container {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 10px;
         }
 
         .skill-tag {
@@ -204,6 +220,31 @@
             border-color: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(30, 41, 59, 0.15);
+        }
+
+        /* Языки */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .lang-card {
+            background: #f8fafc;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .lang-name {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .lang-level {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         /* Кнопка действия */
@@ -273,6 +314,13 @@
     </header>
 
     <section>
+        <h2>О себе</h2>
+        <p class="about-text">
+            Опытный и ответственный специалист с многолетним стажем работы в банковских структурах и сфере логистики. Обладаю сильными управленческими и организаторскими навыками, умею эффективно выстраивать коммуникацию как с клиентами, так и внутри команды. Быстро адаптируюсь к новым задачам, легко нахожу выход из конфликтных и нестандартных ситуаций. Ищу интересные предложения, где будут востребованы мой жизненный опыт, исполнительность и умение работать с большими объемами информации.
+        </p>
+    </section>
+
+    <section>
         <h2>Опыт работы</h2>
         
         <div class="job">
@@ -304,37 +352,70 @@
     </section>
 
     <section>
-        <h2>Профессиональные навыки</h2>
-        <div class="skills-container" id="skills-list">
+        <h2>Знание языков</h2>
+        <div class="languages-grid">
+            <div class="lang-card">
+                <p class="lang-name">Испанский</p>
+                <p class="lang-level">B2 (Выше среднего)</p>
             </div>
+            <div class="lang-card">
+                <p class="lang-name">Английский</p>
+                <p class="lang-level">Базовый уровень</p>
+            </div>
+            <div class="lang-card">
+                <p class="lang-name">Армянский</p>
+                <p class="lang-level">В процессе изучения</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Профессиональные навыки</h2>
+        <div class="skills-group">
+            <h3>Профессиональные (Hard Skills):</h3>
+            <div class="skills-container" id="hard-skills"></div>
+        </div>
+        <div class="skills-group" style="margin-top: 20px;">
+            <h3>Личные качества (Soft Skills):</h3>
+            <div class="skills-container" id="soft-skills"></div>
+        </div>
     </section>
 
     <button class="action-btn" id="contactBtn">Связаться со мной</button>
 </div>
 
 <script>
-    // Исправленный и дополненный массив навыков
-    const skills = [
-        "Работа в режиме многозадачности", 
+    // Разделили навыки для лучшего восприятия
+    const hardSkills = [
         "Работа с большим объёмом информации", 
+        "Ведение деловых переговоров",
+        "Учетные и валютно-обменные операции",
+        "Организация транспортных потоков",
+        "Планирование задач"
+    ];
+
+    const softSkills = [
+        "Работа в режиме многозадачности", 
         "Решение конфликтных ситуаций", 
         "Управление командой", 
         "Умение расставлять приоритеты", 
-        "Грамотное планирование задач", 
-        "Ведение деловых переговоров", 
-        "Целеустремленность", 
-        "Высокая ответственность"
+        "Высокая ответственность",
+        "Целеустремленность"
     ];
 
-    const skillsContainer = document.getElementById('skills-list');
+    function renderSkills(skillsArray, containerId) {
+        const container = document.getElementById(containerId);
+        skillsArray.forEach(skill => {
+            const tag = document.createElement('span');
+            tag.className = 'skill-tag';
+            tag.textContent = skill;
+            container.appendChild(tag);
+        });
+    }
 
-    // Безопасный рендеринг без синтаксических ошибок
-    skills.forEach(skill => {
-        const tag = document.createElement('span');
-        tag.className = 'skill-tag';
-        tag.textContent = skill;
-        skillsContainer.appendChild(tag);
-    });
+    // Запуск рендеринга обоих списков
+    renderSkills(hardSkills, 'hard-skills');
+    renderSkills(softSkills, 'soft-skills');
 
     // Интерактив для кнопки связи
     document.getElementById('contactBtn').addEventListener('click', function() {
