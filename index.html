@@ -53,6 +53,7 @@
             border-bottom: 2px solid var(--ui-text-main);
             padding-bottom: 40px;
             margin-bottom: 50px;
+            gap: 20px;
         }
 
         .profile-title h1 {
@@ -189,7 +190,7 @@
         /* Языковая сетка */
         .lang-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 20px;
         }
 
@@ -271,15 +272,33 @@
             color: var(--ui-bg);
         }
 
-        /* Адаптивность для мобильных */
+        /* Планшетная адаптация (экраны до 992px) */
+        @media (max-width: 992px) {
+            body { padding: 40px 15px; }
+            .resume-sheet { padding: 50px 45px; }
+        }
+
+        /* Мобильная адаптация (экраны до 768px, портретный и альбомный режимы) */
         @media (max-width: 768px) {
             body { padding: 0; background-color: var(--ui-bg); }
-            .resume-sheet { padding: 40px 24px; box-shadow: none; }
-            header { grid-template-columns: 1fr; gap: 20px; }
+            .resume-sheet { padding: 30px 20px; box-shadow: none; }
+            header { grid-template-columns: 1fr; gap: 15px; border-bottom-width: 1px; margin-bottom: 30px; padding-bottom: 25px; }
+            .profile-title h1 { font-size: 2.2rem; }
             .contacts-list { text-align: left; }
-            section { grid-template-columns: 1fr; gap: 10px; }
+            section { grid-template-columns: 1fr; gap: 10px; margin-bottom: 35px; }
+            section:last-of-type { margin-bottom: 45px; }
             h2 { border-bottom: 1px solid var(--ui-border); padding-bottom: 6px; }
-            .action-grid { grid-template-columns: 1fr; }
+            .content-body { gap: 25px; }
+            .log-title { font-size: 1.1rem; }
+            .action-container { padding-top: 25px; }
+            .action-btn { padding: 14px 10px; font-size: 0.9rem; }
+            .action-grid { gap: 10px; }
+        }
+
+        /* Оптимизация для совсем маленьких экранов (до 375px) */
+        @media (max-width: 375px) {
+            .profile-title h1 { font-size: 1.8rem; }
+            .action-btn { font-size: 0.8rem; padding: 12px 5px; }
         }
     </style>
 </head>
@@ -303,7 +322,6 @@
         </div>
     </header>
 
-    <!-- Опыт -->
     <section>
         <h2>Опыт работы</h2>
         <div class="content-body">
@@ -324,7 +342,6 @@
         </div>
     </section>
 
-    <!-- Образование -->
     <section>
         <h2>Образование</h2>
         <div class="content-body">
@@ -343,7 +360,6 @@
         </div>
     </section>
 
-    <!-- Языки -->
     <section>
         <h2>Знание языков</h2>
         <div class="content-body">
@@ -368,17 +384,14 @@
         </div>
     </section>
 
-    <!-- Навыки -->
     <section>
         <h2>Ключевые навыки</h2>
         <div class="content-body">
             <div class="skills-print" id="skills-target">
-                <!-- Элементы добавятся через JS -->
-            </div>
+                </div>
         </div>
     </section>
 
-    <!-- Блок кнопок действия -->
     <div class="action-container">
         <div class="action-grid">
             <a href="mailto:aleshkinamaria@mail.ru?subject=Предложение по вакансии для Марии Алёшкиной" class="action-btn btn-primary">Написать на почту</a>
