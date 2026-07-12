@@ -6,16 +6,20 @@
     <title>Резюме: Мария Алёшкина</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #0f172a;       /* 1. Глубокий темный фон */
-            --bg-card: #1e293b;       /* 2. Стильный серый для карточек */
-            --clr-green: #10b981;     /* 3. Мятно-зеленый акцент */
-            --clr-purple: #8b5cf6;    /* 4. Насыщенный фиолетовый */
-            --clr-indigo: #6366f1;    /* 5. Индиго для элементов */
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --ui-bg: #ffffff;
+            --ui-text-main: #111827;
+            --ui-text-muted: #6b7280;
+            --ui-border: #e5e7eb;
+            
+            /* Палитра из 5 аккуратных цветов */
+            --cls-green: #16a34a;      /* Зеленый статус */
+            --cls-terracotta: #ea580c; /* Маркеры разделов */
+            --cls-blue: #2563eb;       /* Ссылки и интерактив */
+            --cls-slate: #4b5563;      /* Компании и подзаголовки */
+            --cls-light-bg: #f9fafb;   /* Деликатный фон блоков */
         }
 
         * {
@@ -25,357 +29,334 @@
         }
 
         body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
+            background-color: var(--ui-border);
+            color: var(--ui-text-main);
             font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             padding: 60px 20px;
             -webkit-font-smoothing: antialiased;
         }
 
-        .bento-container {
-            max-width: 960px;
+        .resume-sheet {
+            max-width: 800px;
             margin: 0 auto;
+            background: var(--ui-bg);
+            padding: 80px 90px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Ручная строгая сетка шапки */
+        header {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            animation: cubicFade 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            grid-template-columns: 1fr auto;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--ui-text-main);
+            padding-bottom: 40px;
+            margin-bottom: 50px;
         }
 
-        @keyframes cubicFade {
-            from { opacity: 0; transform: scale(0.98) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        /* Общий стиль карточек Бенто */
-        .bento-card {
-            background: var(--bg-card);
-            padding: 35px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.3s ease;
-        }
-
-        .bento-card:hover {
-            border-color: rgba(255, 255, 255, 0.08);
-            transform: translateY(-2px);
-        }
-
-        /* Главная карточка (Шапка) */
-        .card-main {
-            grid-column: span 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-main h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: -0.04em;
+        .profile-title h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
             line-height: 1.1;
-            background: linear-gradient(to right, #ffffff, #cbd5e1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--ui-text-main);
         }
 
-        .meta-row {
+        .status-container {
             display: flex;
             align-items: center;
             gap: 16px;
             margin-top: 15px;
         }
 
-        .age {
-            font-size: 1.2rem;
-            color: var(--text-muted);
+        .age-label {
+            font-size: 1.05rem;
+            color: var(--ui-text-muted);
             font-weight: 500;
         }
 
-        /* Зеленый статус "Активно ищу работу" */
-        .status-active {
+        /* Настоящий живой статус без ИИ-эффектов */
+        .status-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--clr-green);
-            padding: 6px 16px;
-            border-radius: 100px;
+            gap: 6px;
             font-size: 0.85rem;
             font-weight: 600;
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--cls-green);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .status-active::before {
+        .status-badge::before {
             content: "";
-            width: 8px;
-            height: 8px;
-            background: var(--clr-green);
+            width: 6px;
+            height: 6px;
+            background: var(--cls-green);
             border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 12px var(--clr-green);
         }
 
-        /* Карточка контактов */
-        .card-contacts {
-            grid-column: span 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 14px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(30, 41, 59, 1) 100%);
+        /* Блок контактов */
+        .contacts-list {
+            text-align: right;
+            font-size: 0.95rem;
+            color: var(--ui-text-muted);
         }
 
-        .contact-item {
-            font-size: 1rem;
-            color: var(--text-main);
+        .contacts-list p {
+            margin-bottom: 4px;
         }
 
-        .contact-item a {
-            color: var(--clr-indigo);
+        .contacts-list a {
+            color: var(--ui-text-main);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
+            transition: color 0.15s ease;
         }
 
-        .contact-item a:hover {
-            color: #818cf8;
+        .contacts-list a:hover {
+            color: var(--cls-blue);
         }
 
-        /* Карточка опыта (Широкая) */
-        .card-experience {
-            grid-column: span 2;
+        /* Разделы */
+        section {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            margin-bottom: 45px;
+            gap: 20px;
         }
 
-        /* Карточка образования */
-        .card-education {
-            grid-column: span 1;
-            background: linear-gradient(135deg, rgba(139, 93, 246, 0.03) 0%, rgba(30, 41, 59, 1) 100%);
+        section:last-of-type {
+            margin-bottom: 60px;
         }
 
-        /* Карточка навыков и языков */
-        .card-skills { grid-column: span 2; }
-        .card-languages { grid-column: span 1; }
-
-        /* Внутренние стили списков */
         h2 {
             font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
-            margin-bottom: 25px;
+            letter-spacing: 0.12em;
+            color: var(--cls-terracotta);
             font-weight: 700;
+            padding-top: 4px;
         }
 
-        .experience-block {
-            margin-bottom: 30px;
+        .content-body {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
         }
 
-        .experience-block:last-child {
-            margin-bottom: 0;
+        /* Элементы списков */
+        .log-item {
+            display: flex;
+            flex-direction: column;
         }
 
-        .block-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: -0.02em;
+        .log-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
         }
 
-        .block-sub {
-            font-size: 0.95rem;
-            color: var(--clr-purple);
+        .log-title {
+            font-size: 1.2rem;
             font-weight: 600;
-            margin: 4px 0 12px 0;
+            color: var(--ui-text-main);
+            letter-spacing: -0.01em;
         }
 
-        .card-education .block-sub {
-            color: var(--clr-indigo);
+        .log-meta {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--cls-slate);
+            margin-top: 2px;
         }
 
-        .block-text {
+        .log-desc {
             font-size: 0.95rem;
-            color: var(--text-muted);
+            color: var(--ui-text-muted);
+            margin-top: 8px;
             text-align: justify;
         }
 
-        /* Языки в новом формате */
-        .lang-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .sub-education {
+            margin-top: 15px;
+            padding-left: 15px;
+            border-left: 1px solid var(--ui-border);
         }
 
-        .lang-row:last-child {
-            border-bottom: none;
+        /* Языковая сетка */
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
         }
 
-        .lang-name {
+        .lang-node {
+            font-size: 0.95rem;
+        }
+
+        .lang-nodestrong {
             font-weight: 600;
+            display: block;
+            color: var(--ui-text-main);
         }
 
-        .lang-val {
-            color: var(--text-muted);
+        .lang-node span {
+            color: var(--ui-text-muted);
             font-size: 0.9rem;
         }
 
-        /* Цветные интерактивные навыки */
-        .skills-grid {
+        /* Навыки в виде строгого печатного перечисления */
+        .skills-print {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            column-gap: 24px;
+            row-gap: 10px;
         }
 
-        .skill-node {
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-main);
-            padding: 10px 20px;
-            border-radius: 14px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            transition: all 0.2s ease;
+        .skill-text {
+            font-size: 0.95rem;
+            color: var(--ui-text-main);
+            font-weight: 400;
+            position: relative;
         }
 
-        .skill-node:hover {
-            background: #ffffff;
-            color: var(--bg-main);
-            transform: scale(1.03);
+        /* Кнопка */
+        .action-container {
+            border-top: 1px solid var(--ui-border);
+            padding-top: 40px;
         }
 
-        /* Кнопка отправки */
-        .btn-wrapper {
-            grid-column: span 3;
-            margin-top: 10px;
-        }
-
-        .send-btn {
+        .submit-trigger {
+            display: block;
             width: 100%;
-            background: #ffffff;
-            color: var(--bg-main);
+            background: var(--ui-text-main);
+            color: var(--ui-bg);
             border: none;
-            padding: 20px;
-            font-size: 1.05rem;
+            padding: 18px;
+            font-size: 1rem;
             font-weight: 600;
-            border-radius: 20px;
+            letter-spacing: 0.02em;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: background-color 0.15s ease;
+            text-align: center;
         }
 
-        .send-btn:hover {
-            background: var(--clr-green);
-            color: white;
-            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2);
+        .submit-trigger:hover {
+            background: var(--cls-blue);
         }
 
-        /* Адаптивная перестройка под мобильные */
-        @media (max-width: 900px) {
-            body { padding: 30px 14px; }
-            .bento-container {
-                grid-template-columns: 1fr;
-            }
-            .card-main, .card-contacts, .card-experience, .card-education, .card-skills, .card-languages, .btn-wrapper {
-                grid-column: span 1;
-            }
-            .card-main h1 { font-size: 2.2rem; }
+        /* Адаптивность для мобильных */
+        @media (max-width: 768px) {
+            body { padding: 0; background-color: var(--ui-bg); }
+            .resume-sheet { padding: 40px 24px; box-shadow: none; }
+            header { grid-template-columns: 1fr; gap: 20px; }
+            .contacts-list { text-align: left; }
+            section { grid-template-columns: 1fr; gap: 10px; }
+            h2 { border-bottom: 1px solid var(--ui-border); padding-bottom: 6px; }
         }
     </style>
 </head>
 <body>
 
-<div class="bento-container">
+<div class="resume-sheet">
     
-    <!-- Блок 1: Главное инфо -->
-    <div class="bento-card card-main">
-        <div>
+    <header>
+        <div class="profile-title">
             <h1>Мария Алёшкина</h1>
-            <div class="meta-row">
-                <span class="age">53 года</span>
-                <span class="status-active">Активно ищу работу</span>
+            <div class="status-container">
+                <span class="age-label">53 года</span>
+                <span class="status-badge">Активно ищу работу</span>
             </div>
         </div>
-    </div>
+        <div class="contacts-list">
+            <p>Ереван, Армения</p>
+            <p><a href="tel:+37433526231">+374 33 526231</a></p>
+            <p><a href="mailto:aleshkinamaria@mail.ru">aleshkinamaria@mail.ru</a></p>
+        </div>
+    </header>
 
-    <!-- Блок 2: Контакты -->
-    <div class="bento-card card-contacts">
-        <div class="contact-item">📍 Армения, Ереван</div>
-        <div class="contact-item">📞 <a href="tel:+37433526231">+374 33 526231</a></div>
-        <div class="contact-item">✉️ <a href="mailto:aleshkinamaria@mail.ru">aleshkinamaria@mail.ru</a></div>
-    </div>
-
-    <!-- Блок 3: Опыт работы -->
-    <div class="bento-card card-experience">
+    <!-- Опыт -->
+    <section>
         <h2>Опыт работы</h2>
-        <div class="experience-block">
-            <div class="block-title">Кассир-бухгалтер / Начальник отдела</div>
-            <div class="block-sub">«Альфа-Банк», «РОСТ Банк», «МосОбл Банк», «Импекс Банк»</div>
-            <div class="block-text">
-                Успешный многолетний опыт в банковском секторе. Прогрессивное развитие от линейного специалиста до руководителя подразделения. Ключевые компетенции сосредоточены в области кассовых, учетных и валютно-обменных операций.
+        <div class="content-body">
+            <div class="log-item">
+                <div class="log-title">Кассир-бухгалтер / Начальник отдела</div>
+                <div class="log-meta">«Альфа-Банк», «РОСТ Банк», «МосОбл Банк», «Импекс Банк»</div>
+                <div class="log-desc">
+                    Успешный многолетний опыт работы в структурах крупнейших банковских институтов. Карьерный рост от линейных учетных позиций до руководителя профильного подразделения. Экспертиза в проведении комплексных кассовых, расчетных и валютно-обменных операций.
+                </div>
+            </div>
+            <div class="log-item">
+                <div class="log-title">Диспетчер-логист</div>
+                <div class="log-meta">Транспортная компания ООО «ПРОФИ»</div>
+                <div class="log-desc">
+                    Оперативное управление и координация транспортных потоков. Полное администрирование текущих процессов логистической компании, привлечение новых корпоративных клиентов, урегулирование конфликтных ситуаций и работа с претензиями.
+                </div>
             </div>
         </div>
-        <div class="experience-block">
-            <div class="block-title">Диспетчер-логист</div>
-            <div class="block-sub">Транспортная компания ООО «ПРОФИ»</div>
-            <div class="block-text">
-                Координация транспортных потоков и комплексное администрирование операционных процессов компании. Активное привлечение и развитие клиентской базы, оперативное урегулирование спорных и конфликтных ситуаций.
-            </div>
-        </div>
-    </div>
+    </section>
 
-    <!-- Блок 4: Образование -->
-    <div class="bento-card card-education">
+    <!-- Образование -->
+    <section>
         <h2>Образование</h2>
-        <div class="experience-block">
-            <div class="block-title">Высшее медицинское</div>
-            <div class="block-sub">СПб ГМА, 1996 г.</div>
-            <div class="block-text">Специальность «Врач-эпидемиолог».</div>
-        </div>
-        <div class="experience-block" style="margin-top: 20px; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 15px;">
-            <div class="block-title">Курсы и сертификаты</div>
-            <div class="block-sub">Повышение квалификации</div>
-            <div class="block-text">
-                • Валютные операции (1998)<br>
-                • Банковское дело (2006)<br>
-                • Кондитерское дело (2019)
+        <div class="content-body">
+            <div class="log-item">
+                <div class="log-title">Высшее медицинское образование</div>
+                <div class="log-meta">СПб ГМА, 1996 г.</div>
+                <div class="log-desc">Специальность: Врач-эпидемиолог.</div>
+            </div>
+            <div class="log-item">
+                <div class="log-title">Дополнительные квалификации</div>
+                <div class="log-meta">Специализированные программы обучения</div>
+                <div class="log-desc">• Курс «Специалист рублёвых и валютных операций» (1998 г.)</div>
+                <div class="log-desc">• Свидетельство о повышении квалификации в банковской сфере (2006 г.)</div>
+                <div class="sub-education">
+                    <div class="log-title" style="font-size: 1rem;">Профессиональный курс кондитерского мастерства</div>
+                    <div class="log-meta">Диплом специалиста, 2019 г.</div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Блок 5: Ключевые навыки -->
-    <div class="bento-card card-skills">
+    <!-- Языки -->
+    <section>
+        <h2>Знание языков</h2>
+        <div class="content-body">
+            <div class="lang-grid">
+                <div class="lang-node">
+                    <span class="lang-nodestrong">Испанский</span>
+                    <span>B2 — Выше среднего</span>
+                </div>
+                <div class="lang-node">
+                    <span class="lang-nodestrong">Английский</span>
+                    <span>A1 — Базовый</span>
+                </div>
+                <div class="lang-node">
+                    <span class="lang-nodestrong">Армянский</span>
+                    <span>В процессе изучения</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Навыки -->
+    <section>
         <h2>Ключевые навыки</h2>
-        <div class="skills-grid" id="skills-box">
-            <!-- Навыки добавятся скриптом -->
+        <div class="content-body">
+            <div class="skills-print" id="skills-target">
+                <!-- Элементы добавятся в виде обычного строгого текста -->
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Блок 6: Языки -->
-    <div class="bento-card card-languages">
-        <h2>Языки</h2>
-        <div class="lang-row">
-            <span class="lang-name">Испанский</span>
-            <span class="lang-val">B2</span>
-        </div>
-        <div class="lang-row">
-            <span class="lang-name">Английский</span>
-            <span class="lang-val">Базовый</span>
-        </div>
-        <div class="lang-row">
-            <span class="lang-name">Армянский</span>
-            <span class="lang-val">Изучаю</span>
-        </div>
-    </div>
-
-    <!-- Блок 7: Кнопка действия -->
-    <div class="btn-wrapper">
-        <button class="send-btn" id="contactBtn">Предложить вакансию</button>
+    <div class="action-container">
+        <button class="submit-trigger" id="contactBtn">Связаться напрямую</button>
     </div>
 
 </div>
 
 <script>
-    const skills = [
+    const skillsList = [
         "Работа с большим объёмом информации", 
         "Работа в режиме многозадачности", 
         "Решение конфликтных ситуаций", 
@@ -384,17 +365,18 @@
         "Целеустремленность"
     ];
 
-    const box = document.getElementById('skills-box');
+    const target = document.getElementById('skills-target');
 
-    skills.forEach(skill => {
-        const node = document.createElement('div');
-        node.className = 'skill-node';
-        node.textContent = skill;
-        box.appendChild(node);
+    skillsList.forEach((skill, index) => {
+        const span = document.createElement('span');
+        span.className = 'skill-text';
+        // Вместо ИИ-кружочков разделяем навыки строгой точкой посередине строки, как в типографике
+        span.textContent = skill + (index < skillsList.length - 1 ? '  ·  ' : '');
+        target.appendChild(span);
     });
 
     document.getElementById('contactBtn').addEventListener('click', function() {
-        window.location.href = "mailto:aleshkinamaria@mail.ru?subject=Вакансии для Марии Алёшкиной";
+        window.location.href = "mailto:aleshkinamaria@mail.ru?subject=Предложение по вакансии для Марии Алёшкиной";
     });
 </script>
 
