@@ -150,12 +150,6 @@
             flex-direction: column;
         }
 
-        .log-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-
         .log-title {
             font-size: 1.2rem;
             font-weight: 600;
@@ -220,29 +214,52 @@
             position: relative;
         }
 
-        /* Кнопка */
+        /* Блок кнопок в конце */
         .action-container {
             border-top: 1px solid var(--ui-border);
             padding-top: 40px;
         }
 
-        .submit-trigger {
-            display: block;
-            width: 100%;
-            background: var(--ui-text-main);
-            color: var(--ui-bg);
-            border: none;
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 18px;
             font-size: 1rem;
             font-weight: 600;
             letter-spacing: 0.02em;
             cursor: pointer;
-            transition: background-color 0.15s ease;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            border-radius: 4px;
             text-align: center;
         }
 
-        .submit-trigger:hover {
+        .btn-primary {
+            background: var(--ui-text-main);
+            color: var(--ui-bg);
+            border: none;
+        }
+
+        .btn-primary:hover {
             background: var(--cls-blue);
+        }
+
+        .btn-secondary {
+            background: var(--ui-bg);
+            color: var(--ui-text-main);
+            border: 1px solid var(--ui-text-main);
+        }
+
+        .btn-secondary:hover {
+            background: var(--ui-text-main);
+            color: var(--ui-bg);
         }
 
         /* Адаптивность для мобильных */
@@ -253,6 +270,7 @@
             .contacts-list { text-align: left; }
             section { grid-template-columns: 1fr; gap: 10px; }
             h2 { border-bottom: 1px solid var(--ui-border); padding-bottom: 6px; }
+            .action-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -283,7 +301,7 @@
                 <div class="log-title">Кассир-бухгалтер / Начальник отдела</div>
                 <div class="log-meta">«Альфа-Банк», «РОСТ Банк», «МосОбл Банк», «Импекс Банк»</div>
                 <div class="log-desc">
-                    Успешный многолетний опыт работы в структурах крупнейших банковских институтов. Карьерный рост от линейных учетных позиций до руководителя профильного подразделения. Экспертиза в проведении комплексных кассовых, расчетных и валютно-обменных операций.
+                    Успешный многолетний опыт работы в структурах крупнейших банковских институтов. Карьерный рост от линейных учетных позиций до руководителя профильного подразделения.
                 </div>
             </div>
             <div class="log-item">
@@ -324,6 +342,10 @@
         <div class="content-body">
             <div class="lang-grid">
                 <div class="lang-node">
+                    <span class="lang-nodestrong">Русский</span>
+                    <span>Родной</span>
+                </div>
+                <div class="lang-node">
                     <span class="lang-nodestrong">Испанский</span>
                     <span>B2 — Выше среднего</span>
                 </div>
@@ -344,13 +366,17 @@
         <h2>Ключевые навыки</h2>
         <div class="content-body">
             <div class="skills-print" id="skills-target">
-                <!-- Элементы добавятся в виде обычного строгого текста -->
+                <!-- Элементы добавятся через JS -->
             </div>
         </div>
     </section>
 
+    <!-- Блок кнопок действия -->
     <div class="action-container">
-        <button class="submit-trigger" id="contactBtn">Связаться напрямую</button>
+        <div class="action-grid">
+            <a href="mailto:aleshkinamaria@mail.ru?subject=Предложение по вакансии для Марии Алёшкиной" class="action-btn btn-primary">Написать на почту</a>
+            <a href="tel:+37433526231" class="action-btn btn-secondary">Позвонить</a>
+        </div>
     </div>
 
 </div>
@@ -359,9 +385,11 @@
     const skillsList = [
         "Работа с большим объёмом информации", 
         "Работа в режиме многозадачности", 
+        "Умение работать в команде",
         "Решение конфликтных ситуаций", 
         "Управление командой", 
         "Высокая ответственность",
+        "Стремление к изучению нового и повышению профессионального уровня",
         "Целеустремленность"
     ];
 
@@ -370,13 +398,8 @@
     skillsList.forEach((skill, index) => {
         const span = document.createElement('span');
         span.className = 'skill-text';
-        // Вместо ИИ-кружочков разделяем навыки строгой точкой посередине строки, как в типографике
         span.textContent = skill + (index < skillsList.length - 1 ? '  ·  ' : '');
         target.appendChild(span);
-    });
-
-    document.getElementById('contactBtn').addEventListener('click', function() {
-        window.location.href = "mailto:aleshkinamaria@mail.ru?subject=Предложение по вакансии для Марии Алёшкиной";
     });
 </script>
 
