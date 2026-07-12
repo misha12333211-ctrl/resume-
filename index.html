@@ -6,356 +6,297 @@
     <title>Резюме: Мария Алёшкина</title>
     <style>
         :root {
-            --primary: #1e293b;
-            --secondary: #475569;
-            --accent: #0f766e;
-            --accent-hover: #115e59;
-            --bg: #f1f5f9;
-            --text: #0f172a;
-            --light-text: #64748b;
-            --card-bg: #ffffff;
+            --text-main: #18181b;
+            --text-muted: #52525b;
+            --border-color: #e4e4e7;
+            --bg-main: #fafafa;
+            --bg-card: #ffffff;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            padding: 50px 20px;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 60px 20px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .resume-container {
-            max-width: 900px;
+        .resume-wrapper {
+            max-width: 760px;
             margin: 0 auto;
-            background: var(--card-bg);
-            padding: 50px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            background: var(--bg-card);
+            padding: 60px;
+            border: 1px solid var(--border-color);
         }
 
         /* Шапка */
         header {
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 35px;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
+        }
+
+        .header-top {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: baseline;
+            margin-bottom: 12px;
         }
 
-        .header-main h1 {
-            font-size: 2.8rem;
-            color: var(--primary);
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
         }
 
-        .age {
-            font-size: 1.2rem;
-            color: var(--light-text);
-            margin-top: 6px;
-            font-weight: 500;
+        .meta-info {
+            font-size: 1rem;
+            color: var(--text-muted);
         }
 
-        .status-badge {
-            display: inline-block;
-            background: #ccfbf1;
-            color: #115e59;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 14px;
+        .status-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
         }
 
         /* Контакты */
-        .contacts {
-            text-align: right;
-            font-size: 0.95rem;
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #f1f5f9;
-        }
-
-        .contacts p {
-            margin-bottom: 8px;
+        .contacts-line {
             display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 8px;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
-        .contacts p:last-child {
-            margin-bottom: 0;
-        }
-
-        .contacts a {
-            color: var(--accent);
+        .contacts-line a {
+            color: var(--text-main);
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.2s;
         }
 
-        .contacts a:hover {
-            color: var(--accent-hover);
-            text-decoration: underline;
+        .contacts-line a:hover {
+            border-bottom-color: var(--text-main);
         }
 
-        /* Секции */
+        /* Секции контента */
         section {
             margin-bottom: 40px;
         }
 
-        h2 {
-            font-size: 1.2rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 25px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #e2e8f0;
-        }
-
-        /* Элементы опыта и образования */
-        .job {
-            margin-bottom: 30px;
-            position: relative;
-            padding-left: 20px;
-            border-left: 2px solid #e2e8f0;
-        }
-
-        .job:last-child {
+        section:last-of-type {
             margin-bottom: 0;
         }
 
-        .job::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 8px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent);
-        }
-
-        .job-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .job-companies {
+        h2 {
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--light-text);
-            font-size: 0.95rem;
-            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .job-description {
-            color: #334155;
+        /* Опыт и образование */
+        .item-block {
+            margin-bottom: 25px;
+        }
+
+        .item-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .item-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .item-description {
+            font-size: 0.95rem;
+            color: #3f3f46;
+            text-align: justify;
         }
 
         /* Навыки */
-        .skills-container {
+        .skills-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 15px;
+            gap: 8px 16px;
         }
 
-        .skill-tag {
-            background: #f1f5f9;
-            color: var(--primary);
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #e2e8f0;
+        .skill-item {
+            font-size: 0.95rem;
+            color: #3f3f46;
+            display: flex;
+            align-items: center;
         }
 
-        .skill-tag:hover {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(30, 41, 59, 0.15);
+        .skill-item:not(:last-child)::after {
+            content: "•";
+            color: #d4d4d8;
+            margin-left: 16px;
         }
 
         /* Языки */
-        .languages-grid {
+        .languages-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
         }
 
-        .lang-card {
-            background: #f8fafc;
-            padding: 15px 20px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+        .lang-item {
+            font-size: 0.95rem;
         }
 
-        .lang-name {
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .lang-level {
-            color: var(--accent);
+        .lang-item span {
+            color: var(--text-muted);
             font-size: 0.9rem;
-            font-weight: 600;
         }
 
-        /* Кнопка действия */
-        .action-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            font-size: 1.05rem;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: all 0.2s;
-            display: block;
-            width: 100%;
-            margin-top: 45px;
+        /* Кнопка отправки email */
+        .email-link-block {
+            margin-top: 50px;
             text-align: center;
-            box-shadow: 0 4px 14px rgba(15, 118, 110, 0.2);
         }
 
-        .action-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(15, 118, 110, 0.3);
+        .btn-primary {
+            display: inline-block;
+            background: var(--text-main);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #27272a;
         }
 
         /* Адаптивность */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 25px;
-            }
-            .contacts {
-                text-align: left;
-                width: 100%;
-            }
-            .contacts p {
-                justify-content: flex-start;
-            }
+        @media (max-width: 640px) {
             body {
-                padding: 15px;
+                padding: 0;
+                background-color: var(--bg-card);
             }
-            .resume-container {
+            .resume-wrapper {
                 padding: 30px 20px;
+                border: none;
             }
-            .header-main h1 {
-                font-size: 2.2rem;
+            .header-top {
+                flex-direction: column;
+                gap: 5px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .contacts-line {
+                gap: 10px 15px;
+            }
+            .btn-primary {
+                display: block;
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="resume-container">
+<div class="resume-wrapper">
     <header>
-        <div class="header-main">
+        <div class="header-top">
             <h1>Мария Алёшкина</h1>
-            <p class="age">53 года</p>
-            <span class="status-badge">Рассматриваю различные предложения</span>
+            <div class="meta-info">53 года</div>
         </div>
-        <div class="contacts">
-            <p>📍 Армения, Ереван</p>
-            <p>📞 <a href="tel:+37433526231">+374 33 526231</a></p>
-            <p>✉️ <a href="mailto:aleshkinamaria@mail.ru">aleshkinamaria@mail.ru</a></p>
+        <div class="status-text">Рассматриваю различные предложения</div>
+        
+        <div class="contacts-line">
+            <span>📍 Армения, Ереван</span>
+            <span>📞 <a href="tel:+37433526231">+374 33 526231</a></span>
+            <span>✉️ <a href="mailto:aleshkinamaria@mail.ru">aleshkinamaria@mail.ru</a></span>
         </div>
     </header>
 
     <section>
         <h2>Опыт работы</h2>
         
-        <div class="job">
-            <p class="job-title">Кассир-бухгалтер / Начальник отдела</p>
-            <p class="job-companies">«Альфа-Банк», «РОСТ Банк», «МосОбл Банк», «Импекс Банк»</p>
-            <p class="job-description">Успешный опыт работы в банковском секторе. Прошла карьерный путь от линейного сотрудника (кассир-бухгалтер) до руководителя подразделения. Эксперт в сфере кассовых, учетных и валютно-обменных операций.</p>
+        <div class="item-block">
+            <div class="item-title">Кассир-бухгалтер / Начальник отдела</div>
+            <div class="item-subtitle">«Альфа-Банк», «РОСТ Банк», «МосОбл Банк», «Импекс Банк»</div>
+            <p class="item-description">Успешный опыт работы в банковском секторе. Прошла карьерный путь от линейного сотрудника (кассир-бухгалтер) до руководителя подразделения. Эксперт в сфере кассовых, учетных и валютно-обменных операций.</p>
         </div>
 
-        <div class="job">
-            <p class="job-title">Диспетчер-логист</p>
-            <p class="job-companies">Транспортная компания ООО «ПРОФИ»</p>
-            <p class="job-description">Координация транспортных потоков, комплексная организация работы транспортной компании, активный поиск новых клиентов и эффективное, оперативное решение конфликтных ситуаций.</p>
+        <div class="item-block">
+            <div class="item-title">Диспетчер-логист</div>
+            <div class="item-subtitle">Транспортная компания ООО «ПРОФИ»</div>
+            <p class="item-description">Координация транспортных потоков, комплексная организация работы транспортной компании, активный поиск новых клиентов и эффективное, оперативное решение конфликтных ситуаций.</p>
         </div>
     </section>
 
     <section>
         <h2>Образование</h2>
-        <div class="job">
-            <p class="job-title">Высшее медицинское (Врач-эпидемиолог)</p>
-            <p class="job-companies">СПб ГМА, 1996 г.</p>
+        
+        <div class="item-block">
+            <div class="item-title">Высшее медицинское (Врач-эпидемиолог)</div>
+            <div class="item-subtitle">СПб ГМА, 1996 г.</div>
         </div>
         
-        <div class="job">
-            <p class="job-title">Специализированное обучение и курсы</p>
-            <p class="job-companies">Специалист рублёвых и валютных операций (1998 г.)</p>
-            <p class="job-description">Свидетельство о повышении квалификации в банковской сфере (2006 г.)</p>
-            <p class="job-companies" style="margin-top: 10px;">Профессиональный кондитер (2019 г.)</p>
+        <div class="item-block">
+            <div class="item-title">Специализированное обучение и курсы</div>
+            <div class="item-subtitle">Специалист рублёвых и валютных операций (1998 г.)</div>
+            <p class="item-description" style="margin-bottom: 8px;">Свидетельство о повышении квалификации в банковской сфере (2006 г.)</p>
+            <div class="item-subtitle">Профессиональный кондитер (2019 г.)</div>
         </div>
     </section>
 
     <section>
         <h2>Знание языков</h2>
-        <div class="languages-grid">
-            <div class="lang-card">
-                <p class="lang-name">Испанский</p>
-                <p class="lang-level">B2 (Выше среднего)</p>
-            </div>
-            <div class="lang-card">
-                <p class="lang-name">Английский</p>
-                <p class="lang-level">Базовый уровень</p>
-            </div>
-            <div class="lang-card">
-                <p class="lang-name">Армянский</p>
-                <p class="lang-level">В процессе изучения</p>
-            </div>
+        <div class="languages-list">
+            <div class="lang-item"><strong>Испанский</strong> <span>— B2</span></div>
+            <div class="lang-item"><strong>Английский</strong> <span>— базовый</span></div>
+            <div class="lang-item"><strong>Армянский</strong> <span>— изучаю</span></div>
         </div>
     </section>
 
     <section>
-        <h2>Профессиональные навыки</h2>
-        <div class="skills-container" id="skills-list"></div>
+        <h2>Ключевые навыки</h2>
+        <div class="skills-list" id="skills-list"></div>
     </section>
 
-    <button class="action-btn" id="contactBtn">Связаться со мной</button>
+    <div class="email-link-block">
+        <a href="mailto:aleshkinamaria@mail.ru?subject=Предложение о работе для Марии Алёшкиной" class="btn-primary" id="contactBtn">Написать письмо</a>
+    </div>
 </div>
 
 <script>
-    // Чистый отфильтрованный список ключевых навыков
     const skills = [
         "Работа с большим объёмом информации", 
         "Работа в режиме многозадачности", 
@@ -365,18 +306,13 @@
         "Целеустремленность"
     ];
 
-    const skillsContainer = document.getElementById('skills-list');
-
+    const container = document.getElementById('skills-list');
+    
     skills.forEach(skill => {
-        const tag = document.createElement('span');
-        tag.className = 'skill-tag';
-        tag.textContent = skill;
-        skillsContainer.appendChild(tag);
-    });
-
-    // Интерактив для кнопки связи
-    document.getElementById('contactBtn').addEventListener('click', function() {
-        window.location.href = "mailto:aleshkinamaria@mail.ru?subject=Предложение о работе для Марии Алёшкиной";
+        const item = document.createElement('div');
+        item.className = 'skill-item';
+        item.textContent = skill;
+        container.appendChild(item);
     });
 </script>
 
